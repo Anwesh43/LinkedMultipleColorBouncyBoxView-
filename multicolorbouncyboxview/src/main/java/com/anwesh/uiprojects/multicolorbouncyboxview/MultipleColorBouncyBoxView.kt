@@ -15,7 +15,7 @@ import android.graphics.Canvas
 
 val colors : Array<String> = arrayOf("#3F51B5", "#4CAF50", "#f44336", "#0D47A1", "#D84315")
 val rects : Int = 5
-val scGap : Float = 0.02f
+val scGap : Float = 0.02f / rects
 val strokeFactor : Int = 90
 val backColor : Int = Color.parseColor("#BDBDBD")
 val delay : Long = 20
@@ -37,7 +37,9 @@ fun Canvas.drawColorBouncyBox(i : Int, scale : Float, size : Float, paint : Pain
 }
 
 fun Canvas.drawMultiColorBouncyBox(scale : Float, size : Float, paint : Paint) {
-    for (j in 0..(rects - 1)) {
+    val scDiv : Double = 1.0 / rects
+    val k : Int = Math.floor(scale.sinify() / scDiv).toInt()
+    for (j in 0..k) {
         drawColorBouncyBox(j, scale, size, paint)
     }
 }
