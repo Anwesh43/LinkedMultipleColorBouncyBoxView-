@@ -184,4 +184,26 @@ class MultipleColorBouncyBoxView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : MultipleColorBouncyBoxView) {
+
+        private var mcbb : MultiColorBouncyBox = MultiColorBouncyBox(0)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            mcbb.draw(canvas, paint)
+            animator.animate {
+                mcbb.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            mcbb.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
