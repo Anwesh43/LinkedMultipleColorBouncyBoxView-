@@ -4,6 +4,7 @@ package com.anwesh.uiprojects.multicolorbouncyboxview
  * Created by anweshmishra on 21/02/20.
  */
 
+import android.app.Activity
 import android.view.View
 import android.view.MotionEvent
 import android.graphics.Paint
@@ -205,6 +206,15 @@ class MultipleColorBouncyBoxView(ctx : Context) : View(ctx) {
             mcbb.startUpdating {
                 animator.start()
             }
+        }
+    }
+
+    companion object {
+
+        fun create(activity : Activity) : MultipleColorBouncyBoxView {
+            val view : MultipleColorBouncyBoxView = MultipleColorBouncyBoxView(activity)
+            activity.setContentView(view)
+            return view
         }
     }
 }
